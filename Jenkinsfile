@@ -15,7 +15,7 @@ node {
             }    
         }     
        stage('Push image') {
-       withDockerRegistry(credentialsId: '123456visa', url: 'https://index.docker.io'){            
+       withDockerRegistry(credentialsId: 'dockerhub', url: 'https://index.docker.io'){            
        app.push()                  
               }    
            }
