@@ -15,7 +15,7 @@ node {
             }    
         }     
        stage('Push image') {
-       docker.withRegistry('https://index.docker.io', 'dockerhub') {            
+       docker.withRegistry('docker.io', 'dockerhub') {            
        app.push()                  
               }    
            }
