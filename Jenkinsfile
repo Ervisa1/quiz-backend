@@ -12,7 +12,7 @@ pipeline {
             }
             stage('Build') {
                   steps {
-                        sh 'docker image build -t %{Repo_TAG} .'
+                        sh 'docker image build -t ${Repo_TAG} .'
                   }
             }
       }
