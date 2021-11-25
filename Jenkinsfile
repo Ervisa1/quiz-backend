@@ -3,7 +3,6 @@ pipeline {
       environment {
             Service = "quiz-backend"
             Repo_TAG = "${dockerhubname}/${Service}:${BUILD_ID}"
-            Docker_pass = "${passdocker}"
       }
       stages {
             stage('Cloning the repository') {
@@ -15,12 +14,7 @@ pipeline {
                   steps {
                         sh 'docker image build -t ${Repo_TAG} .'
                   }
-            }
-            stage('making password secure') {
-                  steps {
-                        echo '${pass}'
-                  }
-            }            
+            }           
              stage('Push to the docker hub registry') {
                   steps {
                         withDockerRegistry (credentialsId: 'dockerhub-auth', url: "https://index.docker.io/v1/") {
