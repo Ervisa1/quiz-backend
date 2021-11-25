@@ -7,7 +7,7 @@ pipeline {
       stages {
             stage('Cloning the repository') {
                   steps {
-                        git credentialsId: '', url: "https://github.com/${githubname}/${Service}"
+                        git credentialsId: 'Github', url: "https://github.com/${githubname}/${Service}"
                   }
             }
             stage('Build') {
