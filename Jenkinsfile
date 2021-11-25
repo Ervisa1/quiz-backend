@@ -17,7 +17,7 @@ pipeline {
             }
             stage('Push to the docker hub registry') {
                   steps {
-                        docker.withRegistry('https://index.docker.io/v1/', 'dockerhub'){
+                        docker.withRegistry('https://index.docker.io/v1/', 'dockerhub') {
                               $(Repo_TAG).push()
                         }
                   }
