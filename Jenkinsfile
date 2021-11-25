@@ -3,6 +3,7 @@ pipeline {
       environment {
             Service = "quiz-backend"
             Repo_TAG = "${dockerhubname}/${Service}:${BUILD_ID}"
+            pass = "$(passdocker)"
       }
       stages {
             stage('Cloning the repository') {
@@ -17,7 +18,6 @@ pipeline {
             }
             stage('making password secure') {
                   steps {
-                        pass = "dockerhub-auth"
                         echo '${pass}'
                   }
             }            
