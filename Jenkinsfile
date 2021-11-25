@@ -14,7 +14,14 @@ pipeline {
                   steps {
                         sh 'docker image build -t ${Repo_TAG} .'
                   }
-            }           
+            } 
+            stage('Push image') {
+                  steps {
+                        docker.withRegistry('https://registry.hub.docker.com', 'dockerhub-auth') {            
+                              Repo_TAG.push("${env.BUILD_ID}")            
+                        }
+                  }
+            }
              stage('Push to the docker hub registry') {
                   steps {
                         withDockerRegistry (credentialsId: 'dockerhub-auth', url: "https://index.docker.io/v1/") {
