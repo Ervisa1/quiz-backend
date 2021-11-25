@@ -1,8 +1,14 @@
 pipeline {
-      agent any
       environment {
             Service = "quiz-backend"
             Repo_TAG = "${dockerhubname}/${Service}:${BUILD_ID}"
+      agent { 
+            docker {
+                  image 'ervisa/backend_locally:11'
+                  registryUrl 'https://ervisa/backend_locally'
+                  registryCredentialsId 'dockerhub-auth'
+                  args '-v /var/jenkins/.m2:/root/.m2'
+            }
       }
       stages {
             stage('Cloning the repository') {
