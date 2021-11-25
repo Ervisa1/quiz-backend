@@ -3,7 +3,7 @@ pipeline {
       environment {
             Service = "quiz-backend"
             Repo_TAG = "${dockerhubname}/${Service}:${BUILD_ID}"
-            pass = "$(passdocker)"
+            Docker_pass = "${passdocker}"
       }
       stages {
             stage('Cloning the repository') {
