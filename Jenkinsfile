@@ -28,7 +28,7 @@ pipeline {
                               sh 'docker push ${Repo_TAG}'
                         }
                   }
-            }
+             }
             stage('Deploy to Cluster') {
                   steps {
                         sh 'envsubst < ${WORKSPACE}/backend.yaml | kubectl apply -f -'
