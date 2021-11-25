@@ -2,7 +2,7 @@ pipeline {
       agent any
       environment {
             Service = "quiz-backend"
-            Repo_TAG = "${dockerhubname}/${githubname}-${Service}:${BUILD_ID}"
+            Repo_TAG = "${dockerhubname}/${Service}:${BUILD_ID}"
       }
       stages {
             stage('Cloning the repository') {
