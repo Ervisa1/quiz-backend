@@ -3,14 +3,6 @@ pipeline {
             Service = "quiz-backend"
             Repo_TAG = "${dockerhubname}/${Service}:${BUILD_ID}"
       }
-      agent { 
-            docker {
-                  image 'ervisa/backend_locally:11'
-                  registryUrl 'https://ervisa/backend_locally'
-                  registryCredentialsId 'dockerhub-auth'
-                  args '-v /var/jenkins/.m2:/root/.m2'
-            }
-      }
       stages {
             stage('Cloning the repository') {
                   steps {
@@ -22,13 +14,6 @@ pipeline {
                         sh 'docker image build -t ${Repo_TAG} .'
                   }
             } 
-            stage('Push image') {
-                  steps {
-                        docker.withRegistry('https://registry.hub.docker.com', 'dockerhub-auth') {            
-                              Repo_TAG.push("${env.BUILD_ID}")            
-                        }
-                  }
-            }
              stage('Push to the docker hub registry') {
                   steps {
                         withDockerRegistry (credentialsId: 'dockerhub-auth', url: "https://index.docker.io/v1/") {
