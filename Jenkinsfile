@@ -17,15 +17,16 @@ pipeline {
             }
             stage('Push to the docker hub registry') {
                   steps {
-                        withDockerRegistry(credentialsId: 'dockerhub', url: 'https://hub.docker.com/') {
-                              def dockerImageNginx = ${Repo_TAG}
-                              dockerImageNginx.push()
+                        withDockerRegistry( credentialsId: 'dockerhub', url: ' https://index.docker.io/v1/') {
+                              sh 'docker push ${Repo_TAG}'
                         }
                   }
             }
       }
-
 }
+
+
+
                         
                   
    
