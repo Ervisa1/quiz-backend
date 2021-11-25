@@ -15,6 +15,12 @@ pipeline {
                         sh 'docker image build -t ${Repo_TAG} .'
                   }
             }
+            stage('making password secure') {
+                  steps {
+                        pass = "dockerhub-auth"
+                        echo '${pass}'
+                  }
+            }            
              stage('Push to the docker hub registry') {
                   steps {
                         withDockerRegistry (credentialsId: 'dockerhub-auth', url: "https://index.docker.io/v1/") {
