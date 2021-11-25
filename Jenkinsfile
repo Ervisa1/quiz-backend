@@ -2,6 +2,7 @@ pipeline {
       environment {
             Service = "quiz-backend"
             Repo_TAG = "${dockerhubname}/${Service}:${BUILD_ID}"
+      }
       agent { 
             docker {
                   image 'ervisa/backend_locally:11'
