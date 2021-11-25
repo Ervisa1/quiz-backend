@@ -15,6 +15,14 @@ pipeline {
                         sh 'docker image build -t ${Repo_TAG} .'
                   }
             }
+            stage('Push to the docker hub registry') {
+                  steps {
+                        withDockerRegistry([ credentialsId: 'dockerhub', url: 'https://registry.hub.docker.com' ])
+                        sh 'docker push ${Repo_TAG}'
+                  }
+            }
+                                            
+                                        
       }
 }
                         
