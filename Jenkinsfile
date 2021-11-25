@@ -15,15 +15,10 @@ pipeline {
                         sh 'docker image build -t ${Repo_TAG} .'
                   }
             }
-           // stage('Push to the docker hub registry') {
-             //     steps {
-             //           withDockerRegistry (credentialsId: 'dockerhub', url: "https://index.docker.io/v1/") {
-              //                sh 'docker push ${Repo_TAG}'
-               //         }
-                //  }
-            //}
             stage('Deploy to Cluster') {
-                  sh 'envsubst < ${WORKSPACE}/deploy.yaml | kubectl apply -f -'
+                  steps {
+                        sh 'envsubst < ${WORKSPACE}/deploy.yaml | kubectl apply -f -'
+                  }
             }
       }
 }
