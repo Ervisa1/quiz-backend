@@ -1,4 +1,5 @@
-pipeline {  
+pipeline {
+      agent any
       environment {
             Service = "quiz-backend"
             Repo_TAG = "${dockerhubname}/${Service}:${BUILD_ID}"
