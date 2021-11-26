@@ -1,5 +1,9 @@
 pipeline {
-      agent any
+      agent {
+            node {
+                  label 'docker'
+            }
+      }
       environment {
             Service = "quiz-backend"
             Repo_TAG = "${dockerhubname}/${Service}:${BUILD_ID}"
@@ -17,9 +21,7 @@ pipeline {
             } 
              stage('Push to the docker hub registry') {
                   steps {
-                        withDockerRegistry (credentialsId: 'dockerhub-auth', url: "https://registry-1.docker.io/v2/") {
-                              sh 'docker push ${Repo_TAG}'
-                        }
+                        sh 'docker push ${Repo_TAG}'
                   }
              }
             stage('Deploy to Cluster') {
