@@ -18,7 +18,7 @@ pipeline {
              stage('Push to the docker hub registry') {
                   steps {
                         withCredentials([string(credentialsId: 'dockerhubbb', variable: 'dockerhubbbb')]) {
-                              sh "docker login -u ervisa --password-stdin ${dockerhubbbb}"
+                              sh "docker login -u ervisa -p ${dockerhubbbb}"
                         }
                         sh 'docker push ${Repo_TAG}'
                   }
